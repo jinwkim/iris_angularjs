@@ -1,0 +1,61 @@
+<html ng-app="WidgetsDirect">
+
+<head>
+	<!-- Page Metadata -->
+	<title> Widgets Direct </title>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.21/angular-material.min.css">
+
+	<!-- AngularJS Libraries -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-animate.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-aria.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-messages.min.js"></script>
+
+	<!-- AngularMaterial Library for UI -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.21/angular-material.min.js"></script>
+	
+	<!-- User Libraries -->
+	<script src="widgetmaster.js"></script>
+</head>
+
+<body ng-controller="PageController">
+	<!-- Page header -->
+	<md-toolbar class="md-toolbar">
+		<h2 class="md-toolbar-tools">
+			<span>{{message}}</span>
+		</h2>
+	</md-toolbar>
+	<br>
+
+	<!-- Create a filter -->
+	<div layout="row">
+	<md-input-container style="margin:15px;" >
+			<label>Filter</label>
+			<input type="text" ng-model="FilterText">
+	</md-input-container>
+	<md-button class="md-raised md-primary" ng-click="sortAsc=!sortAsc">Reorder</md-button>
+	</div>
+
+	<!-- List of widgets -->
+	<md-card ng-repeat="widget in widgets | filter: FilterText | orderBy: sortAsc ? 'Id':'-Id'">
+		<md-card-header>
+			<md-card-avatar>
+				<img src="img/logo.svg"/>
+			</md-card-avatar>
+			<md-card-header-text>
+				<span class="md-title">Widgets Direct - {{widget.Id}}</span>
+				<span class="md-subhead">{{widget.Name}} - {{widget.Price}}</span>
+			</md-card-header-text>
+		</md-card-header>
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">{{widget.Description}}</span>
+			</md-card-title-text>
+		</md-card-title>
+	</md-card>
+
+</body>
+
+</html>
